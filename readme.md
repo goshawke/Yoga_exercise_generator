@@ -1,4 +1,4 @@
-#Yoga Exercise Generator
+# Yoga Exercise Generator
 
 This project produces a random yoga exercise each time the generate function is run.
 
