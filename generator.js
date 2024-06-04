@@ -10,6 +10,10 @@ const durations = [10, 20, 30, 40, 50, 60];
 const repetitions = [1, 2, 3, 4, 5];
 
 
+/*
+    Generates one randomized yoga exercise.
+    Prints the exercise in the format - "Perform X rep(s) of Y with a Z sec hold for each rep."
+*/
 function generate(){
     let p = positions[Math.floor(Math.random() * positions.length)];
     let d = durations[Math.floor(Math.random() * durations.length)];
@@ -19,5 +23,30 @@ function generate(){
 
  }
 
+// testing
+// generate();
 
-generate();
+
+/*
+    Allows for a variable number of random yoga exerises to be printed to the console.
+*/
+
+function generate_x_exercises(x){
+    if(x <= 0)
+    {
+        console.log("X must be at least 1 in order to generate yoga exercises. Try Again");
+        return;
+    }
+    else if(x >= 100)
+    {
+        console.log("X must be less that 100. Any more than that is insane. Try Again");
+        return;
+    }
+    for(let i = 0; i < x; i++)
+    {
+        generate();
+    }
+}
+
+// testing
+generate_x_exercises(10);
