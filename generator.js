@@ -10,21 +10,40 @@ const durations = [10, 20, 30, 40, 50, 60];
 const repetitions = [1, 2, 3, 4, 5];
 
 
+const yoga_exercise = (p, d, r) => {
+    return {
+        _position: positions[p],
+        _duration: durations[d],
+        _repetition: repetitions[r],
+        getPosition() {
+            return this._position;
+        }, 
+        getDuration() {
+            return this._duration;
+        }, 
+        getRepetition() {
+            return this._repetition;
+        },
+        returnString() {
+            return `Perform ${this.getRepetition()} rep(s) of ${this.getPosition()} with a ${this.getDuration()}sec hold for each rep.`
+        }
+    }
+}
+
 /*
     Generates one randomized yoga exercise.
     Prints the exercise in the format - "Perform X rep(s) of Y with a Z sec hold for each rep."
 */
 function generate(){
-    let p = positions[Math.floor(Math.random() * positions.length)];
-    let d = durations[Math.floor(Math.random() * durations.length)];
-    let r = repetitions[Math.floor(Math.random() * repetitions.length)];
-
-    console.log(`Perform ${r} rep(s) of ${p} with a ${d}sec hold for each rep.`);
-
+    let p = Math.floor(Math.random() * positions.length);
+    let d = Math.floor(Math.random() * durations.length);
+    let r = Math.floor(Math.random() * repetitions.length);
+    let exercise = yoga_exercise(p, d, r)
+    console.log(exercise.returnString());
  }
 
 // testing
-// generate();
+generate();
 
 
 /*
@@ -32,6 +51,7 @@ function generate(){
 */
 
 function generate_x_exercises(x){
+    let exercises = []
     if(x <= 0)
     {
         console.log("X must be at least 1 in order to generate yoga exercises. Try Again");
@@ -49,4 +69,4 @@ function generate_x_exercises(x){
 }
 
 // testing
-generate_x_exercises(10);
+// generate_x_exercises(10);
