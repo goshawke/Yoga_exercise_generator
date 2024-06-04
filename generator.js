@@ -31,19 +31,19 @@ const yoga_exercise = (p, d, r) => {
 }
 
 /*
-    Generates one randomized yoga exercise.
-    Prints the exercise in the format - "Perform X rep(s) of Y with a Z sec hold for each rep."
+    Generates one randomized yoga exercise and returns it.
+    
 */
 function generate(){
     let p = Math.floor(Math.random() * positions.length);
     let d = Math.floor(Math.random() * durations.length);
     let r = Math.floor(Math.random() * repetitions.length);
     let exercise = yoga_exercise(p, d, r)
-    console.log(exercise.returnString());
+    return exercise
  }
 
 // testing
-generate();
+// console.log(generate().returnString());
 
 
 /*
@@ -51,7 +51,7 @@ generate();
 */
 
 function generate_x_exercises(x){
-    let exercises = []
+    let exercises = [];
     if(x <= 0)
     {
         console.log("X must be at least 1 in order to generate yoga exercises. Try Again");
@@ -64,9 +64,27 @@ function generate_x_exercises(x){
     }
     for(let i = 0; i < x; i++)
     {
-        generate();
+        if(i === 0)
+            exercises.push(generate());
+        else{
+            let next = generate();
+            if(next.getPosition() === exercises[i-1].getPosition())
+                continue;
+            else
+            {
+                exercises.push(next);
+            }
+                
+        }
     }
+    return exercises;
+
 }
 
 // testing
-// generate_x_exercises(10);
+let count = 1;
+for (x of generate_x_exercises(20))
+    {
+        console.log(count + '. ' + x.returnString());
+        count++;
+    }
