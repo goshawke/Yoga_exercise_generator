@@ -69,7 +69,10 @@ function generate_x_exercises(x){
         else{
             let next = generate();
             if(next.getPosition() === exercises[i-1].getPosition())
+            {
+                i--;
                 continue;
+            }
             else
             {
                 exercises.push(next);
@@ -82,8 +85,21 @@ function generate_x_exercises(x){
 }
 
 // testing
+// let count = 1;
+// for (x of generate_x_exercises(20))
+//     {
+//         console.log(count + '. ' + x.returnString());
+//         count++;
+//     }
+
+
+function generate_randX_exercises(){
+    return generate_x_exercises(Math.floor(Math.random() * 99) + 1);
+}
+
+// testing
 let count = 1;
-for (x of generate_x_exercises(20))
+for (x of generate_randX_exercises())
     {
         console.log(count + '. ' + x.returnString());
         count++;
